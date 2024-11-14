@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GraphsAndTrees
+namespace GraphsAndTrees.Tree
 {
     public class Person : IComparable
     {
@@ -29,7 +29,7 @@ namespace GraphsAndTrees
             {
                 return 1;
             }
-            
+
         }
     }
 }

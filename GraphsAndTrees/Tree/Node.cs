@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GraphsAndTrees
+namespace GraphsAndTrees.Tree
 {
     public class Node<T> where T : IComparable<T>
     {
@@ -25,7 +25,7 @@ namespace GraphsAndTrees
 
             // base case
             if (check.CompareTo(Value) == 0)
-            { 
+            {
                 return true;
             }
 
