@@ -72,5 +72,73 @@ namespace GraphsAndTrees
                 Console.WriteLine();
             }
         }
+
+        public void Dijkstra(int[,] graph, int source)
+        {
+            int[] dist = new int[Vertices.Count];
+            bool[] visits = new bool[Vertices.Count];
+
+            // init the arrays
+            for (int i = 0; i < Vertices.Count; i++)
+            {
+                dist[i] = int.MaxValue;
+                visits[i] = false;
+            }
+
+            dist[source] = 0;
+
+            // start the algo
+            for (int count = 0; count < Vertices.Count - 1; count++)
+            {
+                // pick minimum distance vertex
+                // from the set of verts not yet processed
+
+                int u = MinDistance(dist, visits);
+                visits[u] = true; // we have now visited U
+
+                // update dist values of adjacent verts to U
+                for (int v = 0; v < Vertices.Count; v++)
+                {
+                    // the magic algo
+                    /*
+                     update dist[v] only if the following conditions are true:
+                        it is not visited,
+                        there exists an edge from u to v,
+                        the edge is not infinity,
+                        the total weight of the path from src to v through the picked node (u) is smaller than the current value of dist[v]
+                     */
+                    if (!visits[v] &&
+                        graph[u, v] != 0 &&
+                        dist[u] != int.MaxValue &&
+                        dist[u] + graph[u,v] < dist[v]
+                        )
+                    {
+                        dist[v] = dist[u] + graph[u, v];
+                    }
+                }
+            }
+
+            for (int i = 0; i < dist.Length; i++)
+            {
+                Console.WriteLine($"Distance to { i }: { dist[i] }");
+            }
+        }
+
+        public int MinDistance(int[] dist, bool[] visited)
+        {
+            int min_dist = Int32.MaxValue;
+            int min_index = -1;
+
+            for (int i = 0; i < Vertices.Count; i++)
+            {
+                if (visited[i] == false && dist[i] <= min_dist)
+                {
+                    min_dist = dist[i];
+                    min_index = i;
+                }
+            }
+
+            return min_index;
+        }
     }
 }

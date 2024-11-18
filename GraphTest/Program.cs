@@ -22,6 +22,10 @@ namespace GraphTest
 
             a.AddEdge(d, 50);
 
+            int?[,] adj = graph.CreateAdjMatrix();
+
+            graph.Dijkstra(adj, 0);
+
             graph.PrintMatrix();
 
             Console.ReadLine();
