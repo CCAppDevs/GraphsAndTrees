@@ -11,16 +11,16 @@ namespace GraphsAndTrees
         public int NumVertices { get => Vertices.Count; }
         public List<Vertex> Vertices = new List<Vertex>();
 
-        public Vertex AddVertex(string label)
+        public Vertex AddVertex(string location, string state = "WA", string country = "USA")
         {
-            Vertex v = new Vertex(label);
+            Vertex v = new Vertex(location, state, country);
             Vertices.Add(v);
             return v;
         }
 
-        public int?[,] CreateAdjMatrix()
+        public int[,] CreateAdjMatrix()
         {
-            int?[,] AdjMatrix = new int?[Vertices.Count, Vertices.Count];
+            int[,] AdjMatrix = new int[Vertices.Count, Vertices.Count];
 
             for (int i = 0; i < Vertices.Count; i++)
             {
@@ -49,14 +49,14 @@ namespace GraphsAndTrees
             Console.Write("\t");
             for (int i = 0; i < Vertices.Count; i++)
             {
-                Console.Write($" {Vertices[i].Label} ");
+                Console.Write($" {Vertices[i].Location} ");
             }
             Console.WriteLine();
 
 
             for (int i = 0; i < Vertices.Count; i++)
             {
-                Console.Write($"{Vertices[i].Label}\t");
+                Console.Write($"{Vertices[i].Location}\t");
 
                 for (int j = 0; j < Vertices.Count; j++)
                 {
@@ -73,8 +73,10 @@ namespace GraphsAndTrees
             }
         }
 
-        public void Dijkstra(int[,] graph, int source)
+        public void Dijkstra(int source)
         {
+            int[,] graph = CreateAdjMatrix();
+
             int[] dist = new int[Vertices.Count];
             bool[] visits = new bool[Vertices.Count];
 
@@ -120,7 +122,7 @@ namespace GraphsAndTrees
 
             for (int i = 0; i < dist.Length; i++)
             {
-                Console.WriteLine($"Distance to { i }: { dist[i] }");
+                Console.WriteLine($"Distance from { Vertices[source].Location } to { Vertices[i].Location }: { dist[i] }");
             }
         }
 

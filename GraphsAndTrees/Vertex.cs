@@ -8,12 +8,17 @@ namespace GraphsAndTrees
 {
     public class Vertex
     {
-        public string Label { get; set; }
+        public string Location { get; set; }
         public List<Edge> Edges { get; private set; }
 
-        public Vertex(string label)
+        public string StateCode { get; set; } // two letter code
+        public string CountryCode { get; set; }
+
+        public Vertex(string location, string state = "WA", string country = "USA")
         {
-            Label = label;
+            Location = location;
+            StateCode = state;
+            CountryCode = country;
             Edges = new List<Edge>();
         }
 

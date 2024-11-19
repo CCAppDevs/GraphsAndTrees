@@ -8,23 +8,20 @@ namespace GraphTest
         {
             DirectedGraph graph = new DirectedGraph();
 
-            var a = graph.AddVertex("a");
-            var b = graph.AddVertex("b");
-            var c = graph.AddVertex("c");
-            var d = graph.AddVertex("d");
-            var e = graph.AddVertex("e");
+            var a = graph.AddVertex("Centralia");
+            var b = graph.AddVertex("Rochester");
+            var c = graph.AddVertex("Olympia");
+            var d = graph.AddVertex("Portland", "OR");
+            var e = graph.AddVertex("Tigard", "OR");
 
             a.AddEdge(b, 1);
             b.AddEdge(c, 1);
-            c.AddEdge(d, 1);
+            // c.AddEdge(d, 1);
             d.AddEdge(e, 1);
             e.AddEdge(a, 1);
-
             a.AddEdge(d, 50);
 
-            int?[,] adj = graph.CreateAdjMatrix();
-
-            graph.Dijkstra(adj, 0);
+            graph.Dijkstra(4);
 
             graph.PrintMatrix();
 
