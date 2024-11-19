@@ -8,20 +8,37 @@ namespace GraphTest
         {
             DirectedGraph graph = new DirectedGraph();
 
-            var a = graph.AddVertex("Centralia");
-            var b = graph.AddVertex("Rochester");
-            var c = graph.AddVertex("Olympia");
-            var d = graph.AddVertex("Portland", "OR");
-            var e = graph.AddVertex("Tigard", "OR");
+            var centralia = graph.AddVertex("Centralia");
+            var rochester = graph.AddVertex("Rochester");
+            var oly = graph.AddVertex("Olympia  ");
+            var portland = graph.AddVertex("Portland ", "OR");
+            var tigard = graph.AddVertex("Tigard   ", "OR");
+            var vancouver = graph.AddVertex("Vancouver", "OR");
 
-            a.AddEdge(b, 1);
-            b.AddEdge(c, 1);
-            // c.AddEdge(d, 1);
-            d.AddEdge(e, 1);
-            e.AddEdge(a, 1);
-            a.AddEdge(d, 50);
+            centralia.AddEdge(rochester, 25);
+            rochester.AddEdge(centralia, 1);
 
-            graph.Dijkstra(4);
+            rochester.AddEdge(oly, 1);
+            oly.AddEdge(rochester, 1);
+            
+            portland.AddEdge(tigard, 1);
+            tigard.AddEdge(portland, 1);
+            
+            centralia.AddEdge(portland, 50);
+            portland.AddEdge(centralia, 50);
+
+            portland.AddEdge(vancouver, 5);
+            vancouver.AddEdge(portland, 5);
+
+            vancouver.AddEdge(centralia, 30);
+            centralia.AddEdge(vancouver, 30);
+
+            vancouver.AddEdge(tigard, 2);
+            tigard.AddEdge(vancouver, 2);
+
+
+
+            graph.Dijkstra(2);
 
             graph.PrintMatrix();
 
