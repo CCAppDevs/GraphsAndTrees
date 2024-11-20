@@ -1,4 +1,6 @@
 ﻿using GraphsAndTrees;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace GraphTest
 {
@@ -37,6 +39,12 @@ namespace GraphTest
             tigard.AddEdge(vancouver, 2);
 
 
+            // serialize it
+            var options = new JsonSerializerOptions { ReferenceHandler = ReferenceHandler.IgnoreCycles, WriteIndented = true };
+            string data = JsonSerializer.Serialize(graph, options);
+
+            // write to a file
+            File.WriteAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "GraphProject", "graph.json"), data);
 
             graph.Dijkstra(2);
 

@@ -9,7 +9,12 @@ namespace GraphsAndTrees
     public class DirectedGraph
     {
         public int NumVertices { get => Vertices.Count; }
-        public List<Vertex> Vertices = new List<Vertex>();
+        public List<Vertex> Vertices { get; set; }
+
+        public DirectedGraph()
+        {
+            Vertices = new List<Vertex>();
+        }
 
         public Vertex AddVertex(string location, string state = "WA", string country = "USA")
         {
